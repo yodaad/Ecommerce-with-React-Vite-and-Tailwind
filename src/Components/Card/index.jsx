@@ -11,11 +11,10 @@ const Card = () => {
           alt="headphones"
         />
       </figure>
-      <p className="flex justify-between mt-3">
-        <span className="text-sm font-light">Headphones</span>
+      <p className="flex justify-between my-3 mx-2">
+        <span className="text-sm font-300">Headphones</span>
         <span className="text-lg font-medium">$300</span>
-
-        <div className="absolute flex justify-center items-center bg-blue-500 w-20 h-5 rounded-full text-white mt-7 mx-32 p-4">
+        <div className="absolute flex justify-center items-center bg-blue-500 w-20 h-5 rounded-full text-white mt-7 ml-28 p-4">
           Buy
         </div>
       </p>
