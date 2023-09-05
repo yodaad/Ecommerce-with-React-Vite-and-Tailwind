@@ -1,6 +1,6 @@
 const Card = () => {
   return (
-    <div className="bg-white cursor-pointer w-56 h-60 rounded-lg">
+    <div className="bg-zinc-50 border-2 border-slate-300 cursor-pointer w-80 h-96 rounded-lg p-1">
       <figure className="relative mb-3 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">
           Electronics
@@ -14,10 +14,11 @@ const Card = () => {
       <p className="flex justify-between mt-3">
         <span className="text-sm font-light">Headphones</span>
         <span className="text-lg font-medium">$300</span>
+
+        <div className="absolute flex justify-center items-center bg-blue-500 w-20 h-5 rounded-full text-white mt-7 mx-32 p-4">
+          Buy
+        </div>
       </p>
-      <div className="absolute flex justify-center items-center bg-blue-500 w-20 h-5 rounded-full text-white my-3 mx-20 p-4">
-        Buy
-      </div>
     </div>
   );
 };
