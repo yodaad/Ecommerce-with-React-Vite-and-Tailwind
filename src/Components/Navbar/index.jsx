@@ -6,7 +6,7 @@ const NavItem = ({ to, children, customStyle }) => (
     <NavLink
       to={to}
       className={({ isActive }) =>
-        isActive ? `underline underline-offset-4 ${customStyle}` : customStyle
+        isActive ? `text-blue-600 font-medium ${customStyle}` : customStyle
       }
     >
       {children}
@@ -23,7 +23,7 @@ NavItem.propTypes = {
 const Navbar = () => (
   <nav className="flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light">
     <ul className="flex items-center gap-3">
-      <NavItem customStyle="font-semibold text-lg no-underline" to="/">
+      <NavItem customStyle="font-semibold text-lg text-current" to="/">
         Shopi
       </NavItem>
       <NavItem to="/all">All</NavItem>
