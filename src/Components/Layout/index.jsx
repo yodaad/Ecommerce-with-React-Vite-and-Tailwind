@@ -8,4 +8,4 @@ Layout.propTypes = {
   children: PropTypes.string.isRequired,
 };
 
-export default Layout;
+export { Layout };
