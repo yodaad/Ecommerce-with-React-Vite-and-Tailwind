@@ -1,15 +1,27 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Layout } from "../../Components/Layout";
 import { Card } from "../../Components/Card";
 
-function Home() {
-  const [items, setItems] = React.useState(null);
+function fetchProducts() {
+  return fetch("https://fakestoreapi.com/products").then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  });
+}
 
-  React.useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => response.json())
-      .then((data) => setItems(data));
+function Home() {
+  const [items, setItems] = useState(null);
+
+  useEffect(() => {
+    fetchProducts()
+      .then((data) => setItems(data))
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
   }, []);
+
   return (
     <Layout>
       Home
