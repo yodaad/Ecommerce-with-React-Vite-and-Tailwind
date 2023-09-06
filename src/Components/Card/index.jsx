@@ -1,6 +1,10 @@
 import PropTypes from "prop-types";
+import { ShoppingCartContext } from "../../Context";
+import { useContext } from "react";
 
 const Card = ({ data }) => {
+  const { count, setCount } = useContext(ShoppingCartContext);
+
   return (
     <div className="bg-zinc-50 border-2 border-slate-300 cursor-pointer w-80 h-96 rounded-lg p-1 relative">
       <figure className="relative mb-3 w-full h-4/5">
@@ -18,7 +22,10 @@ const Card = ({ data }) => {
         <span className="absolute bottom-2 right-2 text-lg font-medium">
           $ {data.price}
         </span>
-        <span className="absolute flex justify-center items-center bg-blue-500 w-20 h-5 rounded-full text-white mt-7 p-4">
+        <span
+          className="absolute flex justify-center items-center bg-blue-500 w-20 h-5 rounded-full text-white mt-7 p-4"
+          onClick={() => setCount(count + 1)}
+        >
           Buy
         </span>
       </p>
