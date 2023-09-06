@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const NavItem = ({ to, children, customStyle }) => (
+const NavItem = ({ to, children }) => (
   <li>
     <NavLink
       to={to}
       className={({ isActive }) =>
-        isActive ? `text-blue-600 font-medium ${customStyle}` : customStyle
+        isActive ? "text-blue-600 font-medium" : undefined
       }
     >
       {children}
@@ -17,14 +17,17 @@ const NavItem = ({ to, children, customStyle }) => (
 NavItem.propTypes = {
   to: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
-  customStyle: PropTypes.string,
 };
 
 const Navbar = () => (
   <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-slate-100">
     <ul className="flex items-center gap-3">
-      <NavItem customStyle="font-semibold text-lg text-current" to="/">
-        Shopi
+      <NavItem to="/">
+        <img
+          className="h-9 w-auto mr-9"
+          src="/src/Assets/logo.jpg"
+          alt="logo"
+        />
       </NavItem>
       <NavItem to="/all">All</NavItem>
       <NavItem to="/clothes">Clothes</NavItem>
