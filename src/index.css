@@ -6,3 +6,7 @@
   width: 100%;
   position: absolute;
 }
+
+body {
+  overflow-y: scroll;
+}

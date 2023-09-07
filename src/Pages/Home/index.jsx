@@ -29,7 +29,7 @@ function Home() {
 
   return (
     <Layout>
-      MyOrders
+      Home
       {openProductDetailModal && (
         <Modal>
           <ProductDetail closeModal={() => setOpenProductDetailModal(false)} />
