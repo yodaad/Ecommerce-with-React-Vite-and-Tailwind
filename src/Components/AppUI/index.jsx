@@ -1,4 +1,5 @@
 import { useRoutes, BrowserRouter } from "react-router-dom";
+import { Footer } from "../../Components/Footer";
 import { Home } from "../../Pages/Home";
 import { MyAccount } from "../../Pages/MyAccount";
 import { MyOrder } from "../../Pages/MyOrder";
@@ -27,6 +28,7 @@ const AppUI = () => {
         <AppRoutes />
         <Navbar />
       </BrowserRouter>
+      <Footer />
     </>
   );
 };

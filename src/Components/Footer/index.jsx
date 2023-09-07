@@ -3,7 +3,7 @@ import github from "../../Assets/github.png";
 
 function Footer() {
   return (
-    <div className="flex justify-center m-2 ">
+    <div className="flex justify-center">
       <p className="text-sm pt-1">Developed by Diego Arango</p>
       <a
         href="https://www.linkedin.com/in/diegoarango/"
