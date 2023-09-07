@@ -1,3 +1,4 @@
+import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { CartCountContext } from "../../Context";
@@ -46,7 +47,10 @@ const Navbar = () => {
         <NavItem to="/my-orders">My Orders</NavItem>
         <NavItem to="/my-account">My Account</NavItem>
         <NavItem to="/sign-in">Sign In</NavItem>
-        <li>Carrito {count}</li>
+        <li className="flex items-center">
+          <ShoppingCartIcon className="h-6 w-6 text-blue-500 cursor-pointer" />
+          <div>{count}</div>
+        </li>
       </ul>
     </nav>
   );
