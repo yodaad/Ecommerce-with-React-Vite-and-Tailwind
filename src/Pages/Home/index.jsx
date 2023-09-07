@@ -3,6 +3,7 @@ import { Layout } from "../../Components/Layout";
 import { Card } from "../../Components/Card";
 import { Modal } from "../../Components/Modal";
 import { ProductDetail } from "../../Components/ProductDetail";
+import { Footer } from "../../Components/Footer";
 import { CartCountContext } from "../../Context";
 
 function fetchProducts() {
@@ -28,27 +29,32 @@ function Home() {
   }, []);
 
   return (
-    <Layout>
-      Home
-      {openProductDetailModal && (
-        <Modal>
-          <ProductDetail closeModal={() => setOpenProductDetailModal(false)} />
-        </Modal>
-      )}
-      <div className="grid gap-4 grid-cols-4 w-full max-w-screen-xl">
-        {items ? (
-          items.map((item) => (
-            <Card
-              key={item.id}
-              data={item}
-              setOpenProductDetailModal={setOpenProductDetailModal}
+    <>
+      <Layout>
+        Home
+        {openProductDetailModal && (
+          <Modal>
+            <ProductDetail
+              closeModal={() => setOpenProductDetailModal(false)}
             />
-          ))
-        ) : (
-          <p>Loading...</p>
+          </Modal>
         )}
-      </div>
-    </Layout>
+        <div className="grid gap-4 grid-cols-4 w-full max-w-screen-xl">
+          {items ? (
+            items.map((item) => (
+              <Card
+                key={item.id}
+                data={item}
+                setOpenProductDetailModal={setOpenProductDetailModal}
+              />
+            ))
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
+      </Layout>
+      <Footer />
+    </>
   );
 }
 
