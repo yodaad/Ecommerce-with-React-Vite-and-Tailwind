@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-import { ShoppingCartContext } from "../../Context";
+import { CartCountContext } from "../../Context";
 import PropTypes from "prop-types";
 
 const NavItem = ({ to, children }) => (
@@ -22,7 +22,7 @@ NavItem.propTypes = {
 };
 
 const Navbar = () => {
-  const { count, setCount } = useContext(ShoppingCartContext);
+  const { count } = useContext(CartCountContext);
 
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-slate-100">

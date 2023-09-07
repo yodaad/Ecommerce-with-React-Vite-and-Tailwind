@@ -1,25 +1,28 @@
 import { createContext, useState } from "react";
 import PropTypes from "prop-types";
 
-const ShoppingCartContext = createContext();
+const CartCountContext = createContext();
 
-const ShoppingCartProvider = ({ children }) => {
+const CartCountProvider = ({ children }) => {
   const [count, setCount] = useState(0);
+  const [openProductDetailModal, setOpenProductDetailModal] = useState(false);
 
   return (
-    <ShoppingCartContext.Provider
+    <CartCountContext.Provider
       value={{
         count,
         setCount,
+        openProductDetailModal,
+        setOpenProductDetailModal,
       }}
     >
       {children}
-    </ShoppingCartContext.Provider>
+    </CartCountContext.Provider>
   );
 };
 
-ShoppingCartProvider.propTypes = {
+CartCountProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export { ShoppingCartContext, ShoppingCartProvider };
+export { CartCountContext, CartCountProvider };

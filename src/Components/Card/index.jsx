@@ -1,13 +1,19 @@
 import PropTypes from "prop-types";
-import { ShoppingCartContext } from "../../Context";
+import { CartCountContext } from "../../Context";
 import { useContext } from "react";
 
 const Card = ({ data }) => {
-  const { count, setCount } = useContext(ShoppingCartContext);
+  const { count, setCount, setOpenProductDetailModal } =
+    useContext(CartCountContext);
 
   return (
-    <div className="bg-zinc-50 border-2 border-slate-300 cursor-pointer w-80 h-96 rounded-lg p-1 relative">
-      <figure className="relative mb-3 w-full h-4/5">
+    <div className="bg-zinc-50 border-2 border-slate-300 w-80 h-96 rounded-lg p-1 relative">
+      <figure
+        className="relative cursor-pointer mb-3 w-full h-4/5"
+        onClick={() => {
+          setOpenProductDetailModal(true);
+        }}
+      >
         <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">
           {data.category}
         </span>
@@ -23,7 +29,7 @@ const Card = ({ data }) => {
           $ {data.price}
         </span>
         <span
-          className="absolute flex justify-center items-center bg-blue-500 w-20 h-5 rounded-full text-white mt-7 p-4"
+          className="absolute flex justify-center items-center cursor-pointer bg-blue-500 w-20 h-5 rounded-full text-white mt-7 p-4"
           onClick={() => setCount(count + 1)}
         >
           Buy
