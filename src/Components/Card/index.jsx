@@ -14,7 +14,7 @@ const Card = ({ data }) => {
           setOpenProductDetailModal(true);
         }}
       >
-        <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">
+        <span className="absolute bottom-0 left-0 bg-blue-200/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">
           {data.category}
         </span>
         <img
