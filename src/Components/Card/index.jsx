@@ -3,15 +3,20 @@ import { CartCountContext } from "../../Context";
 import { useContext } from "react";
 
 const Card = ({ data }) => {
-  const { count, setCount, setOpenProductDetailModal } =
+  const { count, setCount, setOpenProductDetailModal, setProductToShow } =
     useContext(CartCountContext);
+
+  const showProduct = (productDetail) => {
+    setOpenProductDetailModal(true);
+    setProductToShow(productDetail);
+  };
 
   return (
     <div className="bg-zinc-50 border-2 border-slate-300 w-80 h-96 rounded-lg p-1 relative">
       <figure
         className="relative cursor-pointer mb-3 w-full h-4/5"
         onClick={() => {
-          setOpenProductDetailModal(true);
+          showProduct(data);
         }}
       >
         <span className="absolute bottom-0 left-0 bg-blue-200/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">
@@ -45,7 +50,6 @@ Card.propTypes = {
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    // Add other prop validations here as needed
   }).isRequired,
 };
 
