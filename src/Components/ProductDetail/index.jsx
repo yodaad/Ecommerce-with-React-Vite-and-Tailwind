@@ -7,11 +7,7 @@ const ProductDetail = ({ closeModal }) => {
   console.log(productToShow);
 
   return (
-<<<<<<< HEAD
     <div className="flex flex-col relative bg-zinc-50 border-2 border-blue-500 rounded-lg w-[1000px]">
-=======
-    <div className="flex flex-col relative bg-zinc-50 border-2 border-blue-500 rounded-lg w-[1200px] h-[90vh]">
->>>>>>> 62d46ac1213fb8516e7bfd3f27a7e01f085d669a
       <button
         className="absolute top-0 right-0 p-3 border-none bg-transparent text-zinc-500 cursor-pointer"
         onClick={() => closeModal(false)}
@@ -21,7 +17,6 @@ const ProductDetail = ({ closeModal }) => {
       <h2 className="flex justify-center items-center text-2xl font-bold mt-14">
         Product Detail
       </h2>
-<<<<<<< HEAD
       <figure className="flex justify-center items-center  px-6 mt-5">
         <img
           className="w-96 h-96 object-contain rounded-lg"
@@ -46,8 +41,6 @@ const ProductDetail = ({ closeModal }) => {
           </span>
         </span>
       </p>
-=======
->>>>>>> 62d46ac1213fb8516e7bfd3f27a7e01f085d669a
     </div>
   );
 };
