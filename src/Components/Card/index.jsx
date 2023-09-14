@@ -3,7 +3,7 @@ import { CartCountContext } from "../../Context";
 import { useContext } from "react";
 
 const Card = ({ data }) => {
-  const { count, setCount, setOpenProductDetailModal, setProductToShow } =
+  const { setOpenProductDetailModal, setProductToShow, addProductsToCart } =
     useContext(CartCountContext);
 
   const showProduct = (productDetail) => {
@@ -35,7 +35,9 @@ const Card = ({ data }) => {
         </span>
         <span
           className="absolute flex justify-center items-center cursor-pointer bg-blue-500 w-20 h-5 rounded-full text-white mt-7 p-4"
-          onClick={() => setCount(count + 1)}
+          onClick={() => {
+            addProductsToCart(data);
+          }}
         >
           Buy
         </span>

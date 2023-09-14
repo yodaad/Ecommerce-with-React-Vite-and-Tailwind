@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 const ProductDetail = ({ closeModal }) => {
   const { productToShow, count, setCount } = useContext(CartCountContext);
-  console.log(productToShow);
 
   return (
     <div className="flex flex-col relative bg-zinc-50 border-2 border-blue-500 rounded-lg w-[1000px]">
