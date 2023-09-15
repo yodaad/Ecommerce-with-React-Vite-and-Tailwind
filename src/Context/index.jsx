@@ -8,6 +8,8 @@ const CartCountProvider = ({ children }) => {
   const [count, setCount] = useState(0);
   // Add products to cart
   const [cartProducts, setCartProducts] = useState([]);
+  // Cart modal
+  const [openCartModal, setOpenCartModal] = useState(false);
 
   // Product Detail Modal - Open/Close
   const [openProductDetailModal, setOpenProductDetailModal] = useState(false);
@@ -32,6 +34,8 @@ const CartCountProvider = ({ children }) => {
         addProductsToCart,
         cartProducts,
         setCartProducts,
+        openCartModal,
+        setOpenCartModal,
       }}
     >
       {children}
