@@ -3,7 +3,8 @@ import { useContext } from "react";
 import PropTypes from "prop-types";
 
 const ProductDetail = ({ closeModal }) => {
-  const { productToShow, count, setCount } = useContext(CartCountContext);
+  const { productToShow, setProductToShow, addProductsToCart } =
+    useContext(CartCountContext);
 
   return (
     <div className="flex flex-col relative bg-zinc-50 border-2 border-blue-500 rounded-lg w-[1000px]">
@@ -31,7 +32,10 @@ const ProductDetail = ({ closeModal }) => {
         <span className="flex justify-between items-center mt-8">
           <span
             className="flex justify-center items-center bg-blue-500 w-36 h-10 rounded-full text-white text-lg p-4 cursor-pointer"
-            onClick={() => setCount(count + 1)}
+            onClick={() => {
+              setProductToShow(productToShow);
+              addProductsToCart(productToShow);
+            }}
           >
             Buy
           </span>
