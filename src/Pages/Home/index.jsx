@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import { Layout } from "../../Components/Layout";
 import { Card } from "../../Components/Card";
 import { Modal } from "../../Components/Modal";
-import { Cart } from "../../Components/Cart";
 import { ProductDetail } from "../../Components/ProductDetail";
 import { CartCountContext } from "../../Context";
 
@@ -17,12 +16,8 @@ function fetchProducts() {
 
 function Home() {
   const [items, setItems] = useState(null);
-  const {
-    openProductDetailModal,
-    setOpenProductDetailModal,
-    openCartModal,
-    setOpenCartModal,
-  } = useContext(CartCountContext);
+  const { openProductDetailModal, setOpenProductDetailModal } =
+    useContext(CartCountContext);
 
   useEffect(() => {
     fetchProducts()
@@ -48,11 +43,6 @@ function Home() {
         </div>
       ) : (
         <p>Loading...</p>
-      )}
-      {openCartModal && (
-        <Modal>
-          <Cart closeModal={() => setOpenCartModal(false)} />
-        </Modal>
       )}
     </Layout>
   );

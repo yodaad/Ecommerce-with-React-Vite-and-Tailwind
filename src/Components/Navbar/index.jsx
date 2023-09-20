@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { CartCountContext } from "../../Context";
 import PropTypes from "prop-types";
+import { Modal } from "../Modal";
+import { Cart } from "../Cart";
 
 const NavItem = ({ to, children }) => (
   <li>
@@ -23,7 +25,8 @@ NavItem.propTypes = {
 };
 
 const Navbar = () => {
-  const { count, setOpenCartModal } = useContext(CartCountContext);
+  const { count, openCartModal, setOpenCartModal } =
+    useContext(CartCountContext);
 
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-slate-100">
@@ -55,6 +58,11 @@ const Navbar = () => {
           <div>{count}</div>
         </li>
       </ul>
+      {openCartModal && (
+        <Modal>
+          <Cart closeModal={() => setOpenCartModal(false)} />
+        </Modal>
+      )}
     </nav>
   );
 };
