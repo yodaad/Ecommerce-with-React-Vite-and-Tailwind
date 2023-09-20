@@ -23,7 +23,7 @@ NavItem.propTypes = {
 };
 
 const Navbar = () => {
-  const { count } = useContext(CartCountContext);
+  const { count, setOpenCartModal } = useContext(CartCountContext);
 
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-slate-100">
@@ -48,7 +48,10 @@ const Navbar = () => {
         <NavItem to="/my-account">My Account</NavItem>
         <NavItem to="/sign-in">Sign In</NavItem>
         <li className="flex items-center">
-          <ShoppingCartIcon className="h-6 w-6 text-blue-500 cursor-pointer" />
+          <ShoppingCartIcon
+            className="h-6 w-6 text-blue-500 cursor-pointer"
+            onClick={() => setOpenCartModal(true)}
+          />
           <div>{count}</div>
         </li>
       </ul>
