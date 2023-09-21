@@ -5,7 +5,7 @@ import { totalPrice } from "../../utils";
 import PropTypes from "prop-types";
 
 const Cart = ({ closeModal }) => {
-  const { cartProducts, setCartProducts, count, setCount } =
+  const { cartProducts, setCartProducts, count, setCount, order, setOrder } =
     useContext(CartCountContext);
 
   const handleDelete = (id) => {
@@ -29,6 +29,18 @@ const Cart = ({ closeModal }) => {
     setCount(count - 1);
   };
 
+  const handleCheckout = () => {
+    const orderToAdd = {
+      date: "01.02.2023",
+      products: cartProducts,
+      totalProducts: cartProducts.length,
+      totalPrice: totalPrice(cartProducts),
+    };
+
+    setOrder([...order, orderToAdd]);
+    setCartProducts([]), setCount(0);
+  };
+
   return (
     <div className="flex flex-col relative bg-zinc-50 border-2 border-blue-500 rounded-lg w-[1000px] h-[800px]">
       <button
@@ -40,7 +52,7 @@ const Cart = ({ closeModal }) => {
       <h2 className="flex justify-center items-center text-2xl font-bold mt-14">
         My Order
       </h2>
-      <div className="px-8 overflow-y-scroll">
+      <div className="px-8 overflow-y-scroll flex-1">
         {cartProducts.map((product) => (
           <OrderCard
             key={product.id}
@@ -62,6 +74,14 @@ const Cart = ({ closeModal }) => {
             </span>
           </p>
         </div>
+      </div>
+      <div className="flex justify-center">
+        <button
+          className="flex justify-center items-center bg-blue-500 w-3/4 h-6 rounded-lg text-white text-lg mb-6 p-4 cursor-pointer"
+          onClick={() => handleCheckout()}
+        >
+          Checkout
+        </button>
       </div>
     </div>
   );
