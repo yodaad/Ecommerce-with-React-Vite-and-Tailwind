@@ -17,7 +17,7 @@ const Cart = ({ closeModal }) => {
       <h2 className="flex justify-center items-center text-2xl font-bold mt-14">
         My Order
       </h2>
-      <div className="px-8">
+      <div className="px-8 overflow-y-scroll">
         {cartProducts.map((product) => (
           <OrderCard
             key={product.id}
