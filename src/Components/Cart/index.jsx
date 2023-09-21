@@ -8,7 +8,22 @@ const Cart = ({ closeModal }) => {
     useContext(CartCountContext);
 
   const handleDelete = (id) => {
-    const filteredCart = cartProducts.filter((product) => product.id != id);
+    const updatedCart = cartProducts.map((product) => {
+      if (product.id === id) {
+        if (product.quantity > 1) {
+          return {
+            ...product,
+            quantity: product.quantity - 1,
+          };
+        } else {
+          return null;
+        }
+      }
+      return product;
+    });
+
+    const filteredCart = updatedCart.filter((product) => product !== null);
+
     setCartProducts(filteredCart);
     setCount(count - 1);
   };
