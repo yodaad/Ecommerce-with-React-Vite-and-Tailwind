@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const OrderCard = (props) => {
-  const { title, image, price, quantity } = props;
+  const { id, title, image, price, quantity, handleDelete } = props;
   return (
     <div className="flex justify-between items-center my-3">
       <div className="flex items-center gap-4">
@@ -17,7 +17,10 @@ const OrderCard = (props) => {
       </div>
       <div className="flex items-center gap-2">
         <p className="text-sm font-bold mr-4">{price}</p>
-        <button className="border-none bg-transparent text-zinc-500 cursor-pointer">
+        <button
+          onClick={() => handleDelete(id)}
+          className="border-none bg-transparent text-zinc-500 cursor-pointer"
+        >
           X
         </button>
       </div>
@@ -26,10 +29,12 @@ const OrderCard = (props) => {
 };
 
 OrderCard.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export { OrderCard };

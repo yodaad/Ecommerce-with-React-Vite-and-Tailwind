@@ -4,8 +4,15 @@ import { OrderCard } from "../OrderCard";
 import PropTypes from "prop-types";
 
 const Cart = ({ closeModal }) => {
-  const { cartProducts } = useContext(CartCountContext);
-  console.log("Cart: ", cartProducts);
+  const { cartProducts, setCartProducts, count, setCount } =
+    useContext(CartCountContext);
+
+  const handleDelete = (id) => {
+    const filteredCart = cartProducts.filter((product) => product.id != id);
+    setCartProducts(filteredCart);
+    setCount(count - 1);
+  };
+
   return (
     <div className="flex flex-col relative bg-zinc-50 border-2 border-blue-500 rounded-lg w-[1000px] h-[800px]">
       <button
@@ -21,10 +28,12 @@ const Cart = ({ closeModal }) => {
         {cartProducts.map((product) => (
           <OrderCard
             key={product.id}
+            id={product.id}
             quantity={product.quantity}
             title={product.title}
             image={product.image}
             price={`$${product.price * product.quantity}`}
+            handleDelete={handleDelete}
           />
         ))}
       </div>
