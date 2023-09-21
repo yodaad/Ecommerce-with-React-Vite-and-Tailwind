@@ -5,5 +5,9 @@
  */
 
 export const totalPrice = (products) => {
-  return products.reduce((sum, product) => sum + product.price, 0);
+  const total = products.reduce(
+    (sum, product) => sum + product.price * product.quantity,
+    0
+  );
+  return total.toFixed(2);
 };
