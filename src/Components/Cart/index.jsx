@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartCountContext } from "../../Context";
 import { OrderCard } from "../OrderCard";
+import { totalPrice } from "../../utils";
 import PropTypes from "prop-types";
 
 const Cart = ({ closeModal }) => {
@@ -51,6 +52,16 @@ const Cart = ({ closeModal }) => {
             handleDelete={handleDelete}
           />
         ))}
+      </div>
+      <div className="flex justify-center my-5">
+        <div className="px-8 mt-2 border-2 border-blue-500 rounded-lg w-3/4">
+          <p className="flex justify-around">
+            <span className="font-bold">Total: </span>
+            <span className="text-medium font-bold">
+              ${totalPrice(cartProducts)}
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );
