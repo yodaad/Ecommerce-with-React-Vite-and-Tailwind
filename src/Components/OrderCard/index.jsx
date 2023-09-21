@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const OrderCard = (props) => {
-  const { title, image, price } = props;
+  const { title, image, price, quantity } = props;
   return (
     <div className="flex justify-between items-center my-3">
       <div className="flex items-center gap-4">
@@ -12,7 +12,8 @@ const OrderCard = (props) => {
             alt={title}
           />
         </figure>
-        <p className="text-sm font-medium mx-10">{title}</p>
+        <p className="ml-4 mr-1"> X {quantity}</p>
+        <p className="text-sm font-medium ml-4 mr-10">{title}</p>
       </div>
       <div className="flex items-center gap-2">
         <p className="text-sm font-bold mr-4">{price}</p>
@@ -28,6 +29,7 @@ OrderCard.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
 };
 
 export { OrderCard };

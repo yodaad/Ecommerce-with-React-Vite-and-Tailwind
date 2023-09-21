@@ -19,7 +19,18 @@ const CartCountProvider = ({ children }) => {
 
   const addProductsToCart = (productData) => {
     setCount(count + 1);
-    setCartProducts([...cartProducts, productData]);
+
+    const existingProduct = cartProducts.findIndex(
+      (product) => product.id === productData.id
+    );
+
+    if (existingProduct !== -1) {
+      const updatedCartProducts = [...cartProducts];
+      updatedCartProducts[existingProduct].quantity += 1;
+      setCartProducts(updatedCartProducts);
+    } else {
+      setCartProducts([...cartProducts, { ...productData, quantity: 1 }]);
+    }
   };
 
   return (

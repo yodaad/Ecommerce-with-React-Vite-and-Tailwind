@@ -21,9 +21,10 @@ const Cart = ({ closeModal }) => {
         {cartProducts.map((product) => (
           <OrderCard
             key={product.id}
+            quantity={product.quantity}
             title={product.title}
             image={product.image}
-            price={`$${product.price}`}
+            price={`$${product.price * product.quantity}`}
           />
         ))}
       </div>
