@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { CartCountContext } from "../../Context";
 import { OrderCard } from "../OrderCard";
 import { totalPrice } from "../../utils";
@@ -42,7 +43,7 @@ const Cart = ({ closeModal }) => {
   };
 
   return (
-    <div className="flex flex-col relative bg-zinc-50 border-2 border-blue-500 rounded-lg w-[1000px] h-[800px]">
+    <div className="flex flex-col relative bg-zinc-50 border-2 border-blue-500 rounded-lg w-[1100px] h-[800px]">
       <button
         className="absolute top-0 right-0 p-3 border-none bg-transparent text-zinc-500 cursor-pointer z-10"
         onClick={() => closeModal(false)}
@@ -60,7 +61,7 @@ const Cart = ({ closeModal }) => {
             quantity={product.quantity}
             title={product.title}
             image={product.image}
-            price={`$${product.price * product.quantity}`}
+            price={parseFloat(product.price * product.quantity)}
             handleDelete={handleDelete}
           />
         ))}
@@ -75,14 +76,19 @@ const Cart = ({ closeModal }) => {
           </p>
         </div>
       </div>
-      <div className="flex justify-center">
-        <button
-          className="flex justify-center items-center bg-blue-500 w-3/4 h-6 rounded-lg text-white text-lg mb-6 p-4 cursor-pointer"
-          onClick={() => handleCheckout()}
-        >
-          Checkout
-        </button>
-      </div>
+      <Link to="my-orders/last">
+        <div className="flex justify-center">
+          <button
+            className="flex justify-center items-center bg-blue-500 w-3/4 h-6 rounded-lg text-white text-lg mb-6 p-4 cursor-pointer"
+            onClick={() => {
+              handleCheckout();
+              closeModal(false);
+            }}
+          >
+            Checkout
+          </button>
+        </div>
+      </Link>
     </div>
   );
 };
