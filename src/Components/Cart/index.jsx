@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 import { CartCountContext } from "../../Context";
 import { OrderCard } from "../OrderCard";
 import { totalPrice } from "../../utils";
@@ -30,9 +31,12 @@ const Cart = ({ closeModal }) => {
     setCount(count - 1);
   };
 
+  const currentDate = format(new Date(), "dd.MM.yyyy");
+
   const handleCheckout = () => {
+    console.log(currentDate);
     const orderToAdd = {
-      date: "01.02.2023",
+      date: currentDate,
       products: cartProducts,
       totalProducts: cartProducts.length,
       totalPrice: totalPrice(cartProducts),
