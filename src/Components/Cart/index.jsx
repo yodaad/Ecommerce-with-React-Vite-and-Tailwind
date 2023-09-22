@@ -31,14 +31,18 @@ const Cart = ({ closeModal }) => {
     setCount(count - 1);
   };
 
-  const currentDate = format(new Date(), "dd.MM.yyyy");
-
   const handleCheckout = () => {
-    console.log(currentDate);
+    const totalProducts = cartProducts.reduce(
+      (total, product) => total + product.quantity,
+      0
+    );
+
+    const currentDate = format(new Date(), "dd.MM.yyyy");
+
     const orderToAdd = {
       date: currentDate,
       products: cartProducts,
-      totalProducts: cartProducts.length,
+      totalProducts: totalProducts,
       totalPrice: totalPrice(cartProducts),
     };
 
