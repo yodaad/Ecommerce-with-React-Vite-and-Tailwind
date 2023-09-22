@@ -15,7 +15,7 @@ const OrdersCard = (props) => {
 };
 
 OrdersCard.propTypes = {
-  totalPrice: PropTypes.number.isRequired,
+  totalPrice: PropTypes.string.isRequired,
   totalProducts: PropTypes.number.isRequired,
 };
 
