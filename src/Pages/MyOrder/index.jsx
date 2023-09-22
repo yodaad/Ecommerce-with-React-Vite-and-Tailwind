@@ -8,7 +8,7 @@ const MyOrder = () => {
 
   return (
     <Layout>
-      MyOrder
+      My Order
       <div className="flex flex-col">
         {order?.slice(-1)[0]?.products.map((product) => (
           <OrderCard
