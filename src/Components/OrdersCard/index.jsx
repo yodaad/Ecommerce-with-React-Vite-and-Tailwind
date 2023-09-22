@@ -1,16 +1,21 @@
+import { ChevronDoubleRightIcon } from "@heroicons/react/24/solid";
 import PropTypes from "prop-types";
 
 const OrdersCard = (props) => {
   const { totalPrice, totalProducts, date } = props;
 
-  console.log(date);
   return (
-    <div className="flex justify-between items-center my-3 border border-black">
+    <div className="flex justify-between my-3 border-2 bg-slate-50 border-black rounded-lg p-2">
       <p>
-        <span>{date}</span>
-        <span>{totalProducts}</span>
-        <span>{totalPrice}</span>
+        <span className="flex justify-between mx-4">Order date: {date}</span>
+        <span className="flex justify-between mx-4">
+          Amount of products: {totalProducts}
+        </span>
+        <span className="flex justify-between mx-4">
+          Order total: {totalPrice}
+        </span>
       </p>
+      <ChevronDoubleRightIcon className="h-6 w-6  text-black cursor-pointer" />
     </div>
   );
 };
