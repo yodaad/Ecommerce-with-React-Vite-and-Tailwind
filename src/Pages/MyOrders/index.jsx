@@ -12,15 +12,17 @@ function MyOrders() {
       <div className="flex items-center justify-center relative w-80">
         <h1>My Orders</h1>
       </div>
-      {order.map((order, index) => (
-        <Link key={index} to={`/my-orders/${index}`}>
-          <OrdersCard
-            date={order.date}
-            totalPrice={order.totalPrice}
-            totalProducts={order.totalProducts}
-          />
-        </Link>
-      ))}
+      <div className="flex flex-wrap ml-20 mt-5">
+        {order.map((order, index) => (
+          <Link key={index} to={`/my-orders/${index}`}>
+            <OrdersCard
+              date={order.date}
+              totalPrice={order.totalPrice}
+              totalProducts={order.totalProducts}
+            />
+          </Link>
+        ))}
+      </div>
     </Layout>
   );
 }
