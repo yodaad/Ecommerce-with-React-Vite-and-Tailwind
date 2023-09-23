@@ -5,17 +5,22 @@ const OrdersCard = (props) => {
   const { totalPrice, totalProducts, date } = props;
 
   return (
-    <div className="flex justify-between m-3 border-2 bg-slate-100 border-black rounded-lg p-2">
+    <div className="flex justify-between m-4 border-2 bg-slate-100 border-blue-500 rounded-lg p-2">
       <p>
-        <span className="flex justify-between mx-4">Order date: {date}</span>
         <span className="flex justify-between mx-4">
-          Amount of products: {totalProducts}
+          <p className="text-medium font-bold"> Order date: </p>
+          {date}
         </span>
         <span className="flex justify-between mx-4">
-          Order total: {totalPrice}
+          <p className="text-medium font-bold">Amount of products:&nbsp; </p>
+          {totalProducts}
+        </span>
+        <span className="flex justify-between mx-4">
+          <p className="text-medium font-bold">Order total:</p>
+          {"$"} {totalPrice}
         </span>
       </p>
-      <ChevronDoubleRightIcon className="h-6 w-6  text-black cursor-pointer" />
+      <ChevronDoubleRightIcon className="h-6 w-6  text-blue-500 cursor-pointer" />
     </div>
   );
 };
