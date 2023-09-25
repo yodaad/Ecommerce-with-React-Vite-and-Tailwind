@@ -1,31 +1,13 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { Layout } from "../../Components/Layout";
 import { Card } from "../../Components/Card";
 import { Modal } from "../../Components/Modal";
 import { ProductDetail } from "../../Components/ProductDetail";
 import { CartCountContext } from "../../Context";
 
-function fetchProducts() {
-  return fetch("https://fakestoreapi.com/products").then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  });
-}
-
 function Home() {
-  const [items, setItems] = useState(null);
-  const { openProductDetailModal, setOpenProductDetailModal } =
+  const { openProductDetailModal, setOpenProductDetailModal, items } =
     useContext(CartCountContext);
-
-  useEffect(() => {
-    fetchProducts()
-      .then((data) => setItems(data))
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-      });
-  }, []);
 
   return (
     <Layout>

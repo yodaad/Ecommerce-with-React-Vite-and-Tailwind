@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 const CartCountContext = createContext();
@@ -20,6 +20,9 @@ const CartCountProvider = ({ children }) => {
   // Product Detail Modal - Show product
   const [productToShow, setProductToShow] = useState({});
 
+  // Get products
+  const [items, setItems] = useState(null);
+
   const addProductsToCart = (productData) => {
     setCount(count + 1);
 
@@ -35,6 +38,23 @@ const CartCountProvider = ({ children }) => {
       setCartProducts([...cartProducts, { ...productData, quantity: 1 }]);
     }
   };
+
+  function fetchProducts() {
+    return fetch("https://fakestoreapi.com/products").then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    });
+  }
+
+  useEffect(() => {
+    fetchProducts()
+      .then((data) => setItems(data))
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  }, []);
 
   return (
     <CartCountContext.Provider
@@ -52,6 +72,8 @@ const CartCountProvider = ({ children }) => {
         setOpenCartModal,
         order,
         setOrder,
+        items,
+        setItems,
       }}
     >
       {children}
