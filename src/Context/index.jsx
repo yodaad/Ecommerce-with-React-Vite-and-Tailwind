@@ -22,10 +22,10 @@ const CartCountProvider = ({ children }) => {
 
   // Get products
   const [items, setItems] = useState(null);
+  const [filteredItems, setFilteredItems] = useState(null);
 
   // Get products by title
   const [searchByTitle, setSearchByTitle] = useState(null);
-  console.log("Searched: ", searchByTitle);
 
   const addProductsToCart = (productData) => {
     setCount(count + 1);
@@ -51,6 +51,19 @@ const CartCountProvider = ({ children }) => {
       return response.json();
     });
   }
+
+  const filteredItemsByTitle = (items, searchByTitle) => {
+    return items?.filter((item) =>
+      item.title.toLowerCase().includes(searchByTitle.toLowerCase())
+    );
+  };
+
+  useEffect(() => {
+    if (searchByTitle)
+      setFilteredItems(filteredItemsByTitle(items, searchByTitle));
+  }, [items, searchByTitle]);
+
+  console.log("filetered Items: ", filteredItems);
 
   useEffect(() => {
     fetchProducts()
