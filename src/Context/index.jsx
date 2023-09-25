@@ -23,6 +23,10 @@ const CartCountProvider = ({ children }) => {
   // Get products
   const [items, setItems] = useState(null);
 
+  // Get products by title
+  const [searchByTitle, setSearchByTitle] = useState(null);
+  console.log("Searched: ", searchByTitle);
+
   const addProductsToCart = (productData) => {
     setCount(count + 1);
 
@@ -74,6 +78,8 @@ const CartCountProvider = ({ children }) => {
         setOrder,
         items,
         setItems,
+        searchByTitle,
+        setSearchByTitle,
       }}
     >
       {children}
