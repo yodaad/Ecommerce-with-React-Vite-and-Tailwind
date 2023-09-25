@@ -22,7 +22,7 @@ const CartCountProvider = ({ children }) => {
 
   // Get products
   const [items, setItems] = useState(null);
-  const [filteredItems, setFilteredItems] = useState(null);
+  const [filteredItems, setFilteredItems] = useState([]);
 
   // Get products by title
   const [searchByTitle, setSearchByTitle] = useState(null);
@@ -52,6 +52,14 @@ const CartCountProvider = ({ children }) => {
     });
   }
 
+  useEffect(() => {
+    fetchProducts()
+      .then((data) => setItems(data))
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  }, []);
+
   const filteredItemsByTitle = (items, searchByTitle) => {
     return items?.filter((item) =>
       item.title.toLowerCase().includes(searchByTitle.toLowerCase())
@@ -62,16 +70,6 @@ const CartCountProvider = ({ children }) => {
     if (searchByTitle)
       setFilteredItems(filteredItemsByTitle(items, searchByTitle));
   }, [items, searchByTitle]);
-
-  console.log("filetered Items: ", filteredItems);
-
-  useEffect(() => {
-    fetchProducts()
-      .then((data) => setItems(data))
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-      });
-  }, []);
 
   return (
     <CartCountContext.Provider
@@ -93,6 +91,8 @@ const CartCountProvider = ({ children }) => {
         setItems,
         searchByTitle,
         setSearchByTitle,
+        filteredItems,
+        setFilteredItems,
       }}
     >
       {children}

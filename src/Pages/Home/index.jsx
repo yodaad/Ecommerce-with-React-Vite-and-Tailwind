@@ -10,8 +10,36 @@ function Home() {
     openProductDetailModal,
     setOpenProductDetailModal,
     items,
+    searchByTitle,
     setSearchByTitle,
+    filteredItems,
   } = useContext(CartCountContext);
+
+  const renderView = () => {
+    if (searchByTitle?.length > 0) {
+      if (filteredItems.length > 0) {
+        return (
+          <div className="grid gap-4 grid-cols-4 w-full max-w-screen-xl">
+            {filteredItems.map((item) => (
+              <Card key={item.id} data={item} />
+            ))}
+          </div>
+        );
+      } else {
+        return <div>No products found</div>;
+      }
+    } else {
+      return items ? (
+        <div className="grid gap-4 grid-cols-4 w-full max-w-screen-xl">
+          {items.map((item) => (
+            <Card key={item.id} data={item} />
+          ))}
+        </div>
+      ) : (
+        <p>Loading...</p>
+      );
+    }
+  };
 
   return (
     <Layout>
@@ -29,15 +57,7 @@ function Home() {
           <ProductDetail closeModal={() => setOpenProductDetailModal(false)} />
         </Modal>
       )}
-      {items ? (
-        <div className="grid gap-4 grid-cols-4 w-full max-w-screen-xl">
-          {items.map((item) => (
-            <Card key={item.id} data={item} />
-          ))}
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <div>{renderView()}</div>
     </Layout>
   );
 }
