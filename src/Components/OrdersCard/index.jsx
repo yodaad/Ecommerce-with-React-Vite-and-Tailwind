@@ -6,7 +6,7 @@ const OrdersCard = (props) => {
 
   return (
     <div className="flex justify-between m-4 border-2 bg-slate-100 border-blue-500 rounded-lg p-2">
-      <p>
+      <div>
         <span className="flex justify-between mx-4">
           <p className="text-medium font-bold"> Order date: </p>
           {date}
@@ -19,7 +19,7 @@ const OrdersCard = (props) => {
           <p className="text-medium font-bold">Order total:</p>
           {"$"} {totalPrice}
         </span>
-      </p>
+      </div>
       <ChevronDoubleRightIcon className="h-6 w-6  text-blue-500 cursor-pointer" />
     </div>
   );
