@@ -25,7 +25,7 @@ NavItem.propTypes = {
 };
 
 const Navbar = () => {
-  const { count, openCartModal, setOpenCartModal } =
+  const { count, openCartModal, setOpenCartModal, categories } =
     useContext(CartCountContext);
 
   return (
@@ -39,11 +39,11 @@ const Navbar = () => {
           />
         </NavItem>
         <NavItem to="/all">All</NavItem>
-        <NavItem to="/clothes">Clothes</NavItem>
-        <NavItem to="/electronics">Electronics</NavItem>
-        <NavItem to="/furniture">Furniture</NavItem>
-        <NavItem to="/toys">Toys</NavItem>
-        <NavItem to="/others">Others</NavItem>
+        {categories.map((category) => (
+          <NavItem key={category} to={`/category/${category}`}>
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </NavItem>
+        ))}
       </ul>
       <ul className="flex items-center gap-3">
         <li className="text-black/60">yodaadgmail.com</li>

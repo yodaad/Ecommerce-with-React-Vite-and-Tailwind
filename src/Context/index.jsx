@@ -27,6 +27,9 @@ const CartCountProvider = ({ children }) => {
   // Get products by title
   const [searchByTitle, setSearchByTitle] = useState(null);
 
+  // Get categories
+  const [categories, setCategories] = useState([]);
+
   const addProductsToCart = (productData) => {
     setCount(count + 1);
 
@@ -60,6 +63,25 @@ const CartCountProvider = ({ children }) => {
       });
   }, []);
 
+  function fetchCategories() {
+    return fetch("https://fakestoreapi.com/products/categories").then(
+      (response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      }
+    );
+  }
+
+  useEffect(() => {
+    fetchCategories()
+      .then((data) => setCategories(data))
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  }, []);
+
   const filteredItemsByTitle = (items, searchByTitle) => {
     return items?.filter((item) =>
       item.title.toLowerCase().includes(searchByTitle.toLowerCase())
@@ -89,6 +111,8 @@ const CartCountProvider = ({ children }) => {
         setOrder,
         items,
         setItems,
+        categories,
+        setCategories,
         searchByTitle,
         setSearchByTitle,
         filteredItems,
