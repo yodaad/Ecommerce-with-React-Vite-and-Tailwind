@@ -12,7 +12,7 @@ const Card = ({ data }) => {
   };
 
   return (
-    <div className="bg-zinc-50 border-2 border-slate-300 w-80 h-96 rounded-lg p-1 relative">
+    <div className="bg-zinc-50 border-2 border-blue-300 w-76 h-96 rounded-lg p-2 relative">
       <figure
         className="relative cursor-pointer mb-3 w-full h-4/5"
         onClick={() => {
