@@ -27,8 +27,12 @@ const CartCountProvider = ({ children }) => {
   // Get products by title
   const [searchByTitle, setSearchByTitle] = useState(null);
 
+  // Get products by category
+  const [searchByCategory, setSearchByCategory] = useState(null);
+
   // Get categories
   const [categories, setCategories] = useState([]);
+  console.log(searchByCategory);
 
   const addProductsToCart = (productData) => {
     setCount(count + 1);
@@ -88,10 +92,34 @@ const CartCountProvider = ({ children }) => {
     );
   };
 
+  const filteredItemsByCategory = (items, searchByCategory) => {
+    console.log("items: ", items);
+    return items?.filter(
+      (item) => item.category.toLowerCase() === searchByCategory.toLowerCase()
+    );
+  };
+
+  const filterItems = (items, searchByTitle, searchByCategory) => {
+    let filtered = items;
+
+    if (searchByTitle) {
+      filtered = filteredItemsByTitle(filtered, searchByTitle);
+    }
+
+    if (searchByCategory) {
+      filtered = filteredItemsByCategory(filtered, searchByCategory);
+    }
+
+    return filtered;
+  };
+
   useEffect(() => {
-    if (searchByTitle)
-      setFilteredItems(filteredItemsByTitle(items, searchByTitle));
-  }, [items, searchByTitle]);
+    const filtered = filterItems(items, searchByTitle, searchByCategory);
+    setFilteredItems(filtered);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items, searchByTitle, searchByCategory]);
+
+  console.log("filtered:", filteredItems);
 
   return (
     <CartCountContext.Provider
@@ -117,6 +145,8 @@ const CartCountProvider = ({ children }) => {
         setSearchByTitle,
         filteredItems,
         setFilteredItems,
+        searchByCategory,
+        setSearchByCategory,
       }}
     >
       {children}

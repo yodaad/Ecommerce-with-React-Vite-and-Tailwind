@@ -6,10 +6,11 @@ import PropTypes from "prop-types";
 import { Modal } from "../Modal";
 import { Cart } from "../Cart";
 
-const NavItem = ({ to, children }) => (
+const NavItem = ({ to, children, onClick }) => (
   <li>
     <NavLink
       to={to}
+      onClick={onClick}
       className={({ isActive }) =>
         isActive ? "text-blue-600 font-medium" : undefined
       }
@@ -22,11 +23,21 @@ const NavItem = ({ to, children }) => (
 NavItem.propTypes = {
   to: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
 };
 
 const Navbar = () => {
-  const { count, openCartModal, setOpenCartModal, categories } =
-    useContext(CartCountContext);
+  const {
+    count,
+    openCartModal,
+    setOpenCartModal,
+    categories,
+    setSearchByCategory,
+  } = useContext(CartCountContext);
+
+  const handleCategoryClick = (category) => {
+    setSearchByCategory(category);
+  };
 
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-slate-100">
@@ -40,7 +51,11 @@ const Navbar = () => {
         </NavItem>
         <NavItem to="/all">All</NavItem>
         {categories.map((category) => (
-          <NavItem key={category} to={`/category/${category}`}>
+          <NavItem
+            key={category}
+            to={`/category/${category}`}
+            onClick={() => handleCategoryClick(category)}
+          >
             {category.charAt(0).toUpperCase() + category.slice(1)}
           </NavItem>
         ))}
