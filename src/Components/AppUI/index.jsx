@@ -1,4 +1,6 @@
 import { useRoutes, BrowserRouter } from "react-router-dom";
+import { useContext } from "react";
+import { CartCountContext } from "../../Context";
 import { Footer } from "../../Components/Footer";
 import { Home } from "../../Pages/Home";
 import { MyAccount } from "../../Pages/MyAccount";
@@ -9,8 +11,17 @@ import { SignIn } from "../../Pages/SignIn";
 import { Navbar } from "../Navbar";
 
 const AppRoutes = () => {
+  const { categories } = useContext(CartCountContext);
+
+  const categoryRoutes = categories.map((category) => ({
+    path: `/category/${category}`,
+    element: <Home categoryID={category} />,
+  }));
+
   let routes = useRoutes([
     { path: "/", element: <Home /> },
+    { path: "/all", element: <Home /> },
+    ...categoryRoutes,
     { path: "/my-account", element: <MyAccount /> },
     { path: "/my-order", element: <MyOrder /> },
     { path: "/my-orders", element: <MyOrders /> },

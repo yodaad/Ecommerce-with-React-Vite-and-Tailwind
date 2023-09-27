@@ -27,6 +27,9 @@ const CartCountProvider = ({ children }) => {
   // Get products by title
   const [searchByTitle, setSearchByTitle] = useState(null);
 
+  // Get products by category
+  const [searchByCategory, setSearchByCategory] = useState(null);
+
   // Get categories
   const [categories, setCategories] = useState([]);
 
@@ -93,6 +96,15 @@ const CartCountProvider = ({ children }) => {
       setFilteredItems(filteredItemsByTitle(items, searchByTitle));
   }, [items, searchByTitle]);
 
+  const filteredItemsByCategory = (items) => {
+    return items?.filter((item) => item);
+  };
+
+  useEffect(() => {
+    if (searchByCategory)
+      setSearchByCategory(filteredItemsByCategory(items, searchByCategory));
+  }, [items, searchByCategory]);
+
   return (
     <CartCountContext.Provider
       value={{
@@ -117,6 +129,8 @@ const CartCountProvider = ({ children }) => {
         setSearchByTitle,
         filteredItems,
         setFilteredItems,
+        searchByCategory,
+        setSearchByCategory,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Layout } from "../../Components/Layout";
 import { Card } from "../../Components/Card";
 import { Modal } from "../../Components/Modal";
@@ -13,10 +13,30 @@ function Home() {
     searchByTitle,
     setSearchByTitle,
     filteredItems,
+    searchByCategory,
+    setFilteredItems,
   } = useContext(CartCountContext);
 
+  useEffect(() => {
+    // Define a function to filter items by category
+    const filterItemsByCategory = () => {
+      if (searchByCategory) {
+        const filtered = items.filter(
+          (item) => item.category === searchByCategory
+        );
+        setFilteredItems(filtered);
+      } else {
+        // If no category is selected, reset filteredItems to all items
+        setFilteredItems(items);
+      }
+    };
+
+    // Call the filter function whenever searchByCategory changes
+    filterItemsByCategory();
+  }, [items, searchByCategory, setFilteredItems]);
+
   const renderView = () => {
-    if (searchByTitle?.length > 0) {
+    if (searchByTitle?.length > 0 || searchByCategory) {
       if (filteredItems.length > 0) {
         return (
           <div className="grid gap-4 grid-cols-4 w-full max-w-screen-xl">
