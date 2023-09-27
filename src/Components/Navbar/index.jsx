@@ -25,13 +25,8 @@ NavItem.propTypes = {
 };
 
 const Navbar = () => {
-  const {
-    count,
-    openCartModal,
-    setOpenCartModal,
-    categories,
-    setSearchByCategory,
-  } = useContext(CartCountContext);
+  const { count, openCartModal, setOpenCartModal, categories } =
+    useContext(CartCountContext);
 
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-slate-100">
@@ -45,11 +40,7 @@ const Navbar = () => {
         </NavItem>
         <NavItem to="/all">All</NavItem>
         {categories.map((category) => (
-          <NavItem
-            key={category}
-            to={`/category/${category}`}
-            onClick={() => setSearchByCategory(category)}
-          >
+          <NavItem key={category} to={`/category/${category}`}>
             {category.charAt(0).toUpperCase() + category.slice(1)}
           </NavItem>
         ))}
