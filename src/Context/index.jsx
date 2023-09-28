@@ -32,7 +32,6 @@ const CartCountProvider = ({ children }) => {
 
   // Get categories
   const [categories, setCategories] = useState([]);
-  console.log(searchByCategory);
 
   const addProductsToCart = (productData) => {
     setCount(count + 1);

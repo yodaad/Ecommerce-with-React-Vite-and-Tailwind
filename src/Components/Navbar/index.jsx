@@ -40,7 +40,7 @@ const Navbar = () => {
   };
 
   const handleAllClick = () => {
-    setSearchByCategory(null); // Set the category filter to null to show all products
+    setSearchByCategory(null);
   };
 
   return (
@@ -51,6 +51,7 @@ const Navbar = () => {
             className="h-9 w-auto mr-9"
             src="/src/Assets/logo.jpg"
             alt="logo"
+            onClick={() => handleAllClick()}
           />
         </NavItem>
         <NavItem to="/all" onClick={() => handleAllClick()}>
