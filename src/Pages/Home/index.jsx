@@ -10,21 +10,26 @@ function Home() {
     openProductDetailModal,
     setOpenProductDetailModal,
     items,
+    searchByTitle,
     setSearchByTitle,
     filteredItems,
   } = useContext(CartCountContext);
 
   const renderView = () => {
-    if (filteredItems?.length > 0) {
-      return filteredItems?.map((item) => <Card key={item.id} data={item} />);
-    } else if (!items && !filteredItems) {
+    if (!items) {
       return (
-        <div className="flex justify-center font-medium text-xl">
-          ...Loading
+        <div className="flex justify-end font-medium text-xl mt-10">
+          Loading...
         </div>
       );
+    } else if (filteredItems?.length > 0 || !searchByTitle) {
+      return filteredItems?.map((item) => <Card key={item.id} data={item} />);
     } else {
-      return <div className="font-medium text-xl">No products found</div>;
+      return (
+        <div className="flex justify-end font-medium text-xl mt-10">
+          No products found
+        </div>
+      );
     }
   };
 
