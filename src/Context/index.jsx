@@ -93,7 +93,6 @@ const CartCountProvider = ({ children }) => {
   };
 
   const filteredItemsByCategory = (items, searchByCategory) => {
-    console.log("items: ", items);
     return items?.filter(
       (item) => item.category.toLowerCase() === searchByCategory.toLowerCase()
     );
@@ -118,8 +117,6 @@ const CartCountProvider = ({ children }) => {
     setFilteredItems(filtered);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items, searchByTitle, searchByCategory]);
-
-  console.log("filtered:", filteredItems);
 
   return (
     <CartCountContext.Provider

@@ -16,11 +16,14 @@ function Home() {
   } = useContext(CartCountContext);
 
   const renderView = () => {
-    if (searchByTitle?.length > 0) {
-      if (filteredItems.length > 0) {
+    if (searchByTitle || (filteredItems && filteredItems.length > 0)) {
+      const productsToDisplay =
+        filteredItems && filteredItems.length > 0 ? filteredItems : items;
+
+      if (productsToDisplay.length > 0) {
         return (
           <div className="grid gap-4 grid-cols-4 w-full max-w-screen-xl">
-            {filteredItems.map((item) => (
+            {productsToDisplay.map((item) => (
               <Card key={item.id} data={item} />
             ))}
           </div>

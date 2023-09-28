@@ -39,6 +39,10 @@ const Navbar = () => {
     setSearchByCategory(category);
   };
 
+  const handleAllClick = () => {
+    setSearchByCategory(null); // Set the category filter to null to show all products
+  };
+
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-slate-100">
       <ul className="flex items-center gap-3">
@@ -49,7 +53,9 @@ const Navbar = () => {
             alt="logo"
           />
         </NavItem>
-        <NavItem to="/all">All</NavItem>
+        <NavItem to="/all" onClick={() => handleAllClick()}>
+          All
+        </NavItem>
         {categories.map((category) => (
           <NavItem
             key={category}
