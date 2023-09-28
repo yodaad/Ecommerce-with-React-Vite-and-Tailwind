@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 const CartCountContext = createContext();
 
 const CartCountProvider = ({ children }) => {
+  // Signin
+  const [openSignInModal, setOpenSignInModal] = useState(false);
+
   // Shopping cart - Increment quantity
   const [count, setCount] = useState(0);
   // Add products to cart
@@ -122,6 +125,8 @@ const CartCountProvider = ({ children }) => {
       value={{
         count,
         setCount,
+        openSignInModal,
+        setOpenSignInModal,
         openProductDetailModal,
         setOpenProductDetailModal,
         productToShow,
