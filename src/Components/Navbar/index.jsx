@@ -5,7 +5,6 @@ import { CartCountContext } from "../../Context";
 import PropTypes from "prop-types";
 import { Modal } from "../Modal";
 import { Cart } from "../Cart";
-import { SignIn } from "../SignIn";
 
 const NavItem = ({ to, children, onClick }) => (
   <li>
@@ -32,8 +31,6 @@ const Navbar = () => {
     count,
     openCartModal,
     setOpenCartModal,
-    openSignInModal,
-    setOpenSignInModal,
     categories,
     setSearchByCategory,
   } = useContext(CartCountContext);
@@ -74,9 +71,7 @@ const Navbar = () => {
         <li className="text-black/60">yodaadgmail.com</li>
         <NavItem to="/my-orders">My Orders</NavItem>
         <NavItem to="/my-account">My Account</NavItem>
-        <NavItem to="/sign-in" onClick={() => setOpenSignInModal(true)}>
-          Sign In
-        </NavItem>
+        <NavItem to="/sign-in">Sign In</NavItem>
         <li className="flex items-center">
           <ShoppingCartIcon
             className="h-6 w-6 text-blue-500 cursor-pointer"
@@ -88,11 +83,6 @@ const Navbar = () => {
       {openCartModal && (
         <Modal>
           <Cart closeModal={() => setOpenCartModal(false)} />
-        </Modal>
-      )}
-      {openSignInModal && (
-        <Modal>
-          <SignIn closeModal={() => setOpenSignInModal(false)} />
         </Modal>
       )}
     </nav>
