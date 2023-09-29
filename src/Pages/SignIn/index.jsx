@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useContext } from "react";
+import { CartCountContext } from "../../Context";
 import { Layout } from "../../Components/Layout";
 import { SignUp } from "../../Components/SignUp";
 
 function SignIn() {
   const [showSignUp, setShowSignUp] = useState(false);
+  const { email, password } = useContext(CartCountContext);
 
   const toggleSignUp = () => {
     setShowSignUp(!showSignUp);
@@ -19,8 +22,8 @@ function SignIn() {
             Welcome
           </h2>
           <div className="my-4 ml-6">
-            <p>Email: </p>
-            <p>Password: </p>
+            <p>Email: {email}</p>
+            <p>Password: {password}</p>
           </div>
           <div className="flex justify-center">
             <button className="flex justify-center items-center bg-blue-500 rounded-lg text-white text-lg w-3/4 h-10 my-2 p-4 cursor-pointer">

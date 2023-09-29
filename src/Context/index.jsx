@@ -4,8 +4,10 @@ import PropTypes from "prop-types";
 const CartCountContext = createContext();
 
 const CartCountProvider = ({ children }) => {
-  // Signin
-  const [openSignInModal, setOpenSignInModal] = useState(false);
+  // Signup
+  const [name, setName] = useState(false);
+  const [email, setEmail] = useState(false);
+  const [password, setPassword] = useState(false);
 
   // Shopping cart - Increment quantity
   const [count, setCount] = useState(0);
@@ -125,8 +127,12 @@ const CartCountProvider = ({ children }) => {
       value={{
         count,
         setCount,
-        openSignInModal,
-        setOpenSignInModal,
+        name,
+        setName,
+        email,
+        setEmail,
+        password,
+        setPassword,
         openProductDetailModal,
         setOpenProductDetailModal,
         productToShow,
