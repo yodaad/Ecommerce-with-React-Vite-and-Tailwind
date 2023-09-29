@@ -9,7 +9,9 @@ function SignIn() {
   const { email, password } = useContext(CartCountContext);
 
   const toggleSignUp = () => {
-    setShowSignUp(!showSignUp);
+    if (!email && !password) {
+      setShowSignUp(true);
+    }
   };
 
   return (
@@ -32,7 +34,11 @@ function SignIn() {
           </div>
           <div className="flex justify-center">
             <button
-              className="flex justify-center items-center bg-blue-500 rounded-lg text-white text-lg w-3/4 h-10 my-2 p-4 cursor-pointer"
+              className={`flex justify-center items-center ${
+                email && password
+                  ? "bg-zinc-200 text-white cursor-default"
+                  : "bg-blue-500  text-white cursor-pointer"
+              } rounded-lg text-lg w-3/4 h-10 my-2 p-4`}
               onClick={toggleSignUp}
             >
               Sign Up
