@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 import { CartCountContext } from "../../Context";
 
 const SignUp = () => {
-  const { setName, setEmail, setPassword } = useContext(CartCountContext);
+  const { setName, setEmail, setPassword, setSignUp } =
+    useContext(CartCountContext);
 
   const handleCreateAccount = () => {
     const inputName = document.getElementById("name").value;
@@ -13,6 +14,7 @@ const SignUp = () => {
     setName(inputName);
     setEmail(inputEmail);
     setPassword(inputPassword);
+    setSignUp(true);
   };
 
   return (

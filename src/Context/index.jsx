@@ -5,6 +5,7 @@ const CartCountContext = createContext();
 
 const CartCountProvider = ({ children }) => {
   // Signup
+  const [signup, setSignUp] = useState(false);
   const [name, setName] = useState(false);
   const [email, setEmail] = useState(false);
   const [password, setPassword] = useState(false);
@@ -125,6 +126,8 @@ const CartCountProvider = ({ children }) => {
   return (
     <CartCountContext.Provider
       value={{
+        signup,
+        setSignUp,
         count,
         setCount,
         name,

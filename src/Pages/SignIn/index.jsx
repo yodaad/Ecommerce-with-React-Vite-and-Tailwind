@@ -7,12 +7,16 @@ import { SignUp } from "../../Components/SignUp";
 
 function SignIn() {
   const [showSignUp, setShowSignUp] = useState(false);
-  const { name, email, password } = useContext(CartCountContext);
+  const { name, email, password, setSignUp } = useContext(CartCountContext);
 
   const toggleSignUp = () => {
     if (!email && !password) {
       setShowSignUp(true);
     }
+  };
+
+  const handleLoginClick = () => {
+    setSignUp(true);
   };
 
   return (
@@ -36,6 +40,7 @@ function SignIn() {
                     ? "bg-zinc-200 text-white cursor-default"
                     : "bg-blue-500  text-white cursor-pointer"
                 } rounded-lg text-lg w-3/4 h-10 my-2 p-4`}
+                onClick={handleLoginClick}
               >
                 Log In
               </button>

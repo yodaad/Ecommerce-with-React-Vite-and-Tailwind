@@ -1,9 +1,10 @@
+import { NavLink } from "react-router-dom";
 import { CartCountContext } from "../../Context";
 import { useContext } from "react";
 import PropTypes from "prop-types";
 
 const ProductDetail = ({ closeModal }) => {
-  const { productToShow, setProductToShow, addProductsToCart } =
+  const { productToShow, setProductToShow, addProductsToCart, signup } =
     useContext(CartCountContext);
 
   return (
@@ -30,15 +31,23 @@ const ProductDetail = ({ closeModal }) => {
         </span>
         <span>{productToShow.description}</span>
         <span className="flex justify-between items-center mt-8">
-          <span
-            className="flex justify-center items-center bg-blue-500 w-36 h-10 rounded-full text-white text-lg p-4 cursor-pointer"
-            onClick={() => {
-              setProductToShow(productToShow);
-              addProductsToCart(productToShow);
-            }}
-          >
-            Buy
-          </span>
+          {signup ? (
+            <>
+              <span
+                className="flex justify-center items-center bg-blue-500 w-36 h-10 rounded-full text-white text-lg p-4 cursor-pointer"
+                onClick={() => {
+                  setProductToShow(productToShow);
+                  addProductsToCart(productToShow);
+                }}
+              >
+                Buy
+              </span>
+            </>
+          ) : (
+            <span className="flex justify-center items-center bg-blue-500 w-36 h-10 rounded-full text-white text-lg p-4 cursor-pointer">
+              <NavLink to="/sign-in">Buy</NavLink>
+            </span>
+          )}
           <span className="text-2xl font-semibold">
             $ {productToShow.price}
           </span>
