@@ -7,10 +7,10 @@ import { SignUp } from "../../Components/SignUp";
 
 function SignIn() {
   const [showSignUp, setShowSignUp] = useState(false);
-  const { name, email, password, setSignUp } = useContext(CartCountContext);
+  const { account, setSignUp } = useContext(CartCountContext);
 
   const toggleSignUp = () => {
-    if (!email && !password) {
+    if (!account.email && !account.password) {
       setShowSignUp(true);
     }
   };
@@ -29,14 +29,14 @@ function SignIn() {
             Welcome {name}
           </h2>
           <div className="my-4 ml-6">
-            <p>Email: {email}</p>
-            <p>Password: {password}</p>
+            <p>Email: {account.email}</p>
+            <p>Password: {account.password}</p>
           </div>
           <NavLink to="/">
             <div className="flex justify-center">
               <button
                 className={`flex justify-center items-center ${
-                  !email && !password
+                  !account.email && !account.password
                     ? "bg-zinc-200 text-white cursor-default"
                     : "bg-blue-500  text-white cursor-pointer"
                 } rounded-lg text-lg w-3/4 h-10 my-2 p-4`}
@@ -49,7 +49,7 @@ function SignIn() {
           <div className="flex justify-center">
             <button
               className={`flex justify-center items-center ${
-                email && password
+                account.email && account.password
                   ? "bg-zinc-200 text-white cursor-default"
                   : "bg-blue-500  text-white cursor-pointer"
               } rounded-lg text-lg w-3/4 h-10 my-2 p-4`}

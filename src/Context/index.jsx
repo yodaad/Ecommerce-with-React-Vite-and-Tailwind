@@ -39,6 +39,8 @@ const CartCountProvider = ({ children }) => {
   // Get categories
   const [categories, setCategories] = useState([]);
 
+  const account = { name, email, password, signup, order };
+
   const addProductsToCart = (productData) => {
     setCount(count + 1);
 
@@ -136,6 +138,7 @@ const CartCountProvider = ({ children }) => {
         setEmail,
         password,
         setPassword,
+        account,
         openProductDetailModal,
         setOpenProductDetailModal,
         productToShow,

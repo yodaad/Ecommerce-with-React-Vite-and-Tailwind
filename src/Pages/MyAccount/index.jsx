@@ -3,7 +3,7 @@ import { CartCountContext } from "../../Context";
 import { Layout } from "../../Components/Layout";
 
 function MyAccount() {
-  const { name, email } = useContext(CartCountContext);
+  const { account } = useContext(CartCountContext);
 
   return (
     <Layout>
@@ -12,8 +12,8 @@ function MyAccount() {
           My Account
         </h2>
         <div className="my-4 ml-6">
-          <p>Name: {name}</p>
-          <p>Email: {email}</p>
+          <p>Name: {account.name}</p>
+          <p>Email: {account.email}</p>
         </div>
         <div className="flex justify-center">
           <button className="flex justify-center items-center bg-blue-500 rounded-lg text-white text-lg w-3/4 h-10 mt-4 mb-2 p-4 cursor-pointer">
@@ -21,6 +21,7 @@ function MyAccount() {
           </button>
         </div>
       </div>
+      {console.log(account)}
     </Layout>
   );
 }
