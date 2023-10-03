@@ -1,16 +1,27 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { CartCountContext } from "../../Context";
+import { useLocalStorage } from "../../Hooks/useLocalStorage";
 
 const SignUp = () => {
   const { setName, setEmail, setPassword, setSignUp } =
     useContext(CartCountContext);
+
+  const { saveInfo } = useLocalStorage("Account");
 
   const handleCreateAccount = () => {
     const inputName = document.getElementById("name").value;
     const inputEmail = document.getElementById("email").value;
     const inputPassword = document.getElementById("password").value;
 
+    const userAccountData = {
+      name: inputName,
+      email: inputEmail,
+      password: inputPassword,
+      signup: true,
+    };
+
+    saveInfo(userAccountData);
     setName(inputName);
     setEmail(inputEmail);
     setPassword(inputPassword);

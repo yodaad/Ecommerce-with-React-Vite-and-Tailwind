@@ -1,5 +1,6 @@
 import { useRoutes, BrowserRouter } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import { CartCountContext } from "../../Context";
 import { Footer } from "../../Components/Footer";
 import { Home } from "../../Pages/Home";
@@ -11,7 +12,20 @@ import { NotFound } from "../../Pages/NotFound";
 import { Navbar } from "../Navbar";
 
 const AppRoutes = () => {
-  const { categories } = useContext(CartCountContext);
+  const { categories, setName, setEmail, setPassword, setSignUp } =
+    useContext(CartCountContext);
+  const { getInfo } = useLocalStorage("Account");
+
+  useEffect(() => {
+    const storedAccount = getInfo();
+    storedAccount &&
+      (({ name, email, password, signup }) => {
+        setName(name);
+        setEmail(email);
+        setPassword(password);
+        setSignUp(signup);
+      })(storedAccount);
+  });
 
   const categoryRoutes = categories.map((category) => ({
     path: `/category/${category}`,

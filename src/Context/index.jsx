@@ -10,6 +10,9 @@ const CartCountProvider = ({ children }) => {
   const [email, setEmail] = useState(false);
   const [password, setPassword] = useState(false);
 
+  const [account = { name, email, password, signup, order }, setAccount] =
+    useState({});
+
   // Shopping cart - Increment quantity
   const [count, setCount] = useState(0);
   // Add products to cart
@@ -38,8 +41,6 @@ const CartCountProvider = ({ children }) => {
 
   // Get categories
   const [categories, setCategories] = useState([]);
-
-  const account = { name, email, password, signup, order };
 
   const addProductsToCart = (productData) => {
     setCount(count + 1);
@@ -139,6 +140,7 @@ const CartCountProvider = ({ children }) => {
         password,
         setPassword,
         account,
+        setAccount,
         openProductDetailModal,
         setOpenProductDetailModal,
         productToShow,
