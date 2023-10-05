@@ -12,20 +12,32 @@ import { NotFound } from "../../Pages/NotFound";
 import { Navbar } from "../Navbar";
 
 const AppRoutes = () => {
-  const { categories, setName, setEmail, setPassword, setSignUp } =
-    useContext(CartCountContext);
+  const {
+    categories,
+    setName,
+    setEmail,
+    setPassword,
+    setSignUp,
+    setOrder,
+    order,
+  } = useContext(CartCountContext);
   const { getInfo } = useLocalStorage("Account");
 
   useEffect(() => {
     const storedAccount = getInfo();
     storedAccount &&
-      (({ name, email, password, signup }) => {
+      (({ name, email, password, signup, orders }) => {
         setName(name);
         setEmail(email);
         setPassword(password);
         setSignUp(signup);
+
+        // Check if the orders data has changed
+        if (JSON.stringify(orders) !== JSON.stringify(order)) {
+          setOrder(orders || []); // Ensure orders is an array
+        }
       })(storedAccount);
-  });
+  }, [getInfo, setName, setEmail, setPassword, setSignUp, setOrder, order]);
 
   const categoryRoutes = categories.map((category) => ({
     path: `/category/${category}`,

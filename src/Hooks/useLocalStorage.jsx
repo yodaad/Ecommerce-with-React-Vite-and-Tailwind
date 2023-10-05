@@ -17,8 +17,11 @@ const useLocalStorage = (key) => {
 
   const saveInfo = (data) => {
     console.log("Saving data:", data); // Debugging
-    localStorage.setItem(key, JSON.stringify(data));
-    setAccount(data);
+    const storedData = localStorage.getItem(key);
+    let currentData = storedData ? JSON.parse(storedData) : {};
+    currentData = { ...currentData, ...data };
+    localStorage.setItem(key, JSON.stringify(currentData));
+    setAccount(currentData);
   };
 
   const getInfo = () => {

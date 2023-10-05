@@ -5,10 +5,12 @@ import { CartCountContext } from "../../Context";
 import { OrderCard } from "../OrderCard";
 import { totalPrice } from "../../utils";
 import PropTypes from "prop-types";
+import { useLocalStorage } from "../../Hooks/useLocalStorage";
 
 const Cart = ({ closeModal }) => {
   const { cartProducts, setCartProducts, count, setCount, order, setOrder } =
     useContext(CartCountContext);
+  const { saveInfo, getInfo } = useLocalStorage("Account");
 
   const handleDelete = (id) => {
     const updatedCart = cartProducts.map((product) => {
@@ -32,6 +34,8 @@ const Cart = ({ closeModal }) => {
   };
 
   const handleCheckout = () => {
+    const existingAccount = getInfo() || {};
+
     const totalProducts = cartProducts.reduce(
       (total, product) => total + product.quantity,
       0
@@ -46,8 +50,17 @@ const Cart = ({ closeModal }) => {
       totalPrice: totalPrice(cartProducts),
     };
 
+    existingAccount.orders = existingAccount.orders || [];
+    existingAccount.orders.push(orderToAdd);
+    console.log("Data before saving:", existingAccount);
+
     setOrder([...order, orderToAdd]);
-    setCartProducts([]), setCount(0);
+    saveInfo(existingAccount);
+    console.log("Data after saving:", getInfo());
+
+    // Clear the cart and reset count
+    setCartProducts([]);
+    setCount(0);
   };
 
   return (

@@ -4,7 +4,7 @@ import { CartCountContext } from "../../Context";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
 
 const SignUp = () => {
-  const { setName, setEmail, setPassword, setSignUp } =
+  const { setName, setEmail, setPassword, setSignUp, order } =
     useContext(CartCountContext);
 
   const { saveInfo } = useLocalStorage("Account");
@@ -19,6 +19,7 @@ const SignUp = () => {
       email: inputEmail,
       password: inputPassword,
       signup: true,
+      orders: order,
     };
 
     saveInfo(userAccountData);
