@@ -26,7 +26,7 @@ function SignIn() {
       ) : (
         <div className="flex flex-col relative bg-zinc-50 border-2 border-blue-500 rounded-lg w-[500px] h-[270px] mt-10">
           <h2 className="flex justify-center items-center text-2xl font-bold my-4">
-            Welcome {name}
+            Welcome {account.name}
           </h2>
           <div className="my-4 ml-6">
             <p>Email: {account.email}</p>

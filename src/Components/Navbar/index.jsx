@@ -47,7 +47,7 @@ const Navbar = () => {
 
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-slate-100">
-      {console.log("Signup: ", signup)}
+      {console.log("Signup at Navbar: ", signup)}
       {signup ? (
         <>
           <ul className="flex items-center gap-3">
@@ -98,7 +98,7 @@ const Navbar = () => {
           <>
             <NavItem to="/my-orders">My Orders</NavItem>
             <NavItem to="/my-account">My Account</NavItem>
-            <NavItem to="/sign-in">Sign Out</NavItem>
+            <NavItem to="/sign-out">Sign Out</NavItem>
             <li className="flex items-center">
               <ShoppingCartIcon
                 className="h-6 w-6 text-blue-500 cursor-pointer"
