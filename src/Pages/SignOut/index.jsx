@@ -1,17 +1,21 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { CartCountContext } from "../../Context";
+import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import { Layout } from "../../Components/Layout";
 
 const SignOut = () => {
   const { account, setSignUp, setAccount } = useContext(CartCountContext);
+  const { saveInfo } = useLocalStorage("Account");
 
   const handleSignOutClick = () => {
+    saveInfo({
+      signup: false,
+    });
+
     setSignUp(false);
     setAccount((prevAccount) => ({
       ...prevAccount,
-      email: "",
-      password: "",
     }));
   };
 

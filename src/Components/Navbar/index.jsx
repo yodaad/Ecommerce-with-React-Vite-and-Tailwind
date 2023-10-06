@@ -8,7 +8,7 @@ import { Cart } from "../Cart";
 
 const Navbar = () => {
   const {
-    email,
+    account,
     signup,
     count,
     openCartModal,
@@ -93,9 +93,9 @@ const Navbar = () => {
         </>
       )}
       <ul className="flex items-center gap-3">
-        <li className="text-black/60">{email}</li>
         {signup ? (
           <>
+            <li className="text-black/60">{account.email}</li>
             <NavItem to="/my-orders">My Orders</NavItem>
             <NavItem to="/my-account">My Account</NavItem>
             <NavItem to="/sign-out">Sign Out</NavItem>

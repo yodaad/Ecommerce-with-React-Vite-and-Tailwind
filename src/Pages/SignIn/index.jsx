@@ -2,12 +2,14 @@ import { useState } from "react";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { CartCountContext } from "../../Context";
+import { useLocalStorage } from "../../Hooks/useLocalStorage";
 import { Layout } from "../../Components/Layout";
 import { SignUp } from "../../Components/SignUp";
 
 function SignIn() {
   const [showSignUp, setShowSignUp] = useState(false);
   const { account, setSignUp } = useContext(CartCountContext);
+  const { saveInfo } = useLocalStorage("Account");
 
   const toggleSignUp = () => {
     if (!account.email && !account.password) {
@@ -16,6 +18,10 @@ function SignIn() {
   };
 
   const handleLoginClick = () => {
+    saveInfo({
+      signup: true,
+    });
+
     setSignUp(true);
   };
 
