@@ -19,6 +19,9 @@ const useLocalStorage = (key) => {
     console.log("Saving data:", data); // Debugging
     const storedData = localStorage.getItem(key);
     let currentData = storedData ? JSON.parse(storedData) : {};
+    if (Array.isArray(currentData)) {
+      currentData = {};
+    }
     currentData = { ...currentData, ...data };
     localStorage.setItem(key, JSON.stringify(currentData));
     setAccount(currentData);

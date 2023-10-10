@@ -4,24 +4,34 @@ import { CartCountContext } from "../../Context";
 import { useLocalStorage } from "../../Hooks/useLocalStorage";
 
 const SignUp = () => {
-  const { setName, setEmail, setPassword, setSignUp, order } =
+  const { setName, setEmail, setPassword, setSignUp, setAccount, setAccounts } =
     useContext(CartCountContext);
 
-  const { saveInfo } = useLocalStorage("Account");
+  const { saveInfo, getInfo } = useLocalStorage("Account");
 
   const handleCreateAccount = () => {
     const inputName = document.getElementById("name").value;
     const inputEmail = document.getElementById("email").value;
     const inputPassword = document.getElementById("password").value;
 
+    let existingAccounts = getInfo() || [];
+
+    if (!Array.isArray(existingAccounts)) {
+      existingAccounts = [];
+    }
+
     const userAccountData = {
       name: inputName,
       email: inputEmail,
       password: inputPassword,
       signup: true,
-      orders: order,
+      orders: [],
     };
 
+    existingAccounts.push(userAccountData);
+
+    setAccount(userAccountData);
+    setAccounts(existingAccounts);
     saveInfo(userAccountData);
     setName(inputName);
     setEmail(inputEmail);

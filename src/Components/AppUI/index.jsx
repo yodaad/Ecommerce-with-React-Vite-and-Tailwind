@@ -38,7 +38,7 @@ const AppRoutes = () => {
           setOrder(orders || []); // Ensure orders is an array
         }
       })(storedAccount);
-  }, [getInfo, setName, setEmail, setPassword, setSignUp, setOrder, order]);
+  }, []);
 
   const categoryRoutes = categories.map((category) => ({
     path: `/category/${category}`,

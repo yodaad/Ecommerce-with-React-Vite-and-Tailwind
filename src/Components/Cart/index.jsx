@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { CartCountContext } from "../../Context";
@@ -33,8 +33,12 @@ const Cart = ({ closeModal }) => {
     setCount(count - 1);
   };
 
+  useEffect(() => {
+    console.log("Order: ", order);
+  }, [order]);
+
   const handleCheckout = () => {
-    const existingAccount = getInfo() || {};
+    const existingAccount = getInfo() || { orders: [] };
 
     const totalProducts = cartProducts.reduce(
       (total, product) => total + product.quantity,
@@ -49,12 +53,12 @@ const Cart = ({ closeModal }) => {
       totalProducts: totalProducts,
       totalPrice: totalPrice(cartProducts),
     };
-
     existingAccount.orders = existingAccount.orders || [];
     existingAccount.orders.push(orderToAdd);
     console.log("Data before saving:", existingAccount);
+    console.log("Order to add: ", orderToAdd);
 
-    setOrder([...order, orderToAdd]);
+    setOrder(existingAccount.orders);
     saveInfo(existingAccount);
     console.log("Data after saving:", getInfo());
 

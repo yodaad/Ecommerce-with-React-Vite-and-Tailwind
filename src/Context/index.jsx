@@ -10,6 +10,7 @@ const CartCountProvider = ({ children }) => {
   const [email, setEmail] = useState(false);
   const [password, setPassword] = useState(false);
 
+  const [accounts, setAccounts] = useState([]);
   const [account = { name, email, password, signup, order }, setAccount] =
     useState({});
 
@@ -141,6 +142,8 @@ const CartCountProvider = ({ children }) => {
         setPassword,
         account,
         setAccount,
+        accounts,
+        setAccounts,
         openProductDetailModal,
         setOpenProductDetailModal,
         productToShow,
